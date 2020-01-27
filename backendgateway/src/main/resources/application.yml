@@ -1,0 +1,48 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: sc-service-gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8760/eureka/
+
+
+
+#server:
+#  port: 8761
+#
+#spring:
+#  application:
+#    name: sc-service-gateway
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: false
+#          lowerCaseServiceId: true
+#      routes:
+#      - id: sc-service-hi
+#        uri: lb://SC-SERVICE-HI
+#        predicates:
+#        - Path=/hi/**
+#        filters:
+#        - StripPrefix=1
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8760/eureka/
+#
+#logging:
+#  level:
+#    org.springframework.cloud.gateway: debug
