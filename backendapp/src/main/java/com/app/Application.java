@@ -24,11 +24,21 @@ public class Application {
     @Value("${server.port}")
     String port;
 
+    public int postCount = 0 ;
+
+
     @GetMapping("/hi")
     public String home(@RequestParam(value = "name", defaultValue = "zhangsan") String name) {
         System.out.println("##################### get requests #####################");
         return "hi " + name + " ,i am from port:" + port;
     }
 
+    @GetMapping("/getcity")
+    public String getlist(@RequestParam(value = "name", defaultValue = "beijing") String name) {
+        System.out.println(String.format("##################### get getcity % % #####################", name + postCount));
+        postCount ++;
+        String resultString = "{\"result\":" + name + postCount  + "}";
+        return resultString;
+    }
 
 }
