@@ -9,9 +9,11 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
+@RestController
 public class Application {
 
 
@@ -29,9 +31,29 @@ public class Application {
 //    }
 
 
-
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+    @Value("${server.port}")
+    String port;
+
+    public int postCount = 0 ;
+
+
+    @GetMapping("/hi")
+    public String home(@RequestParam(value = "name", defaultValue = "zhangsan") String name) {
+        System.out.println("##################### get requests #####################");
+        return "hi " + name + " ,i am from port:" + port;
+    }
+
+    @GetMapping("/getcity")
+    public String getlist(@RequestParam(value = "name", defaultValue = "beijing") String name) {
+        System.out.println(String.format("##################### get getcity %s #####################", String.valueOf(postCount)));
+        postCount ++;
+        String resultString = "{\"result\":" + postCount  + "}";
+        return resultString;
+    }
+
 
 }

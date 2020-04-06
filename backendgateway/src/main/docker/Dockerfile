@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 VOLUME /tmp
-ADD backend-1.0.jar app.jar
+RUN echo '######################'
+ADD backendgateway-1.0.jar app.jar
 RUN mkdir -p /data/log
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN echo 'Asia/Shanghai' >/etc/timezone
