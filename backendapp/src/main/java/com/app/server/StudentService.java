@@ -22,8 +22,7 @@ public class StudentService {
     /**
      * 新增
      * @param name
-     * @param age
-     * @param address
+     * @param email
      * @return
      */
     public int save(String name,String email){
@@ -32,14 +31,16 @@ public class StudentService {
         student.setName(name);
         student.setEmail(email);
         studentRepository.save(student);
+
+        //if (true) {
+        //    throw new RuntimeException("save 抛异常了");
+        //}
+
         return 0;
     }
 
     /**
      * 查询所有
-     * @param name
-     * @param age
-     * @param address
      * @return
      */
     public List<Student> getList(){
@@ -89,7 +90,28 @@ public class StudentService {
 
 
 
+    /**
+     * 分页查询所有
+     * @return
+     */
+    public List<Student> getPageList(){
+        return (List<Student>) studentRepository.findAll();
+    }
 
+
+    public synchronized void getSynchronizedTime(){
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + "synchronized loop " + i);
+        }
+
+    }
+
+    public  void getTime(){
+        for (int i = 0; i < 5; i++) {
+            System.out.println(Thread.currentThread().getName() + "synchronized loop " + i);
+        }
+
+    }
 
 
 }

@@ -60,6 +60,18 @@
             <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
         </dependency>
 
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.spy</groupId>
+            <artifactId>spymemcached</artifactId>
+            <version>2.12.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -67,6 +79,10 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--fork :  如果没有该项配置，肯呢个devtools不会起作用，即应用不会restart   这个要手动加进去 -->
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>
